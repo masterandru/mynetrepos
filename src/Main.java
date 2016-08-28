@@ -5,8 +5,7 @@ public class Main {
 
         System.out.println(" Hello World!");
 
-
-        System.out.println("Hello World!");
+        System.out.format(" Hello World - %s !", args[0]);
 
     }
 }
