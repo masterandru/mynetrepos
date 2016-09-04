@@ -7,7 +7,8 @@ import java.util.Collection;
  * 30.08.2016
  */
 public class Resume {
-    String fullName;
+    private String fullName;
     Collection<String> collection;
+
 
 }
