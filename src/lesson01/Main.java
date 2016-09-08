@@ -1,9 +1,9 @@
-package main;
+package lesson01;
 
 public class Main {
 
     public static void main(String[] args) {
-        System.out.println("--- START PROGRAMM ---");
+        System.out.println("--- START PROGRAMM 01 ---");
         System.out.println("Hello World!");
         System.out.format("Hello World - %s !\n", args[0]);
 
