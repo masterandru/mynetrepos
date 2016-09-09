@@ -1,6 +1,7 @@
 package ru.javawebinar.webapp.model;
 
 import java.util.Collection;
+import java.util.List;
 
 /**
  * user
@@ -8,7 +9,10 @@ import java.util.Collection;
  */
 public class Resume {
     private String fullName;
-    Collection<String> collection;
+    private String location;
+
+    List<Contact> contacts;
+    List<Section> sections;
 
 
 }

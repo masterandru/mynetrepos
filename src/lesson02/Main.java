@@ -22,11 +22,25 @@ public class Main {
         System.out.println(link.equals(link3));
 
         System.out.println(link.getClass());
+        System.out.println(link);
+        System.out.println(Link.EMPTY);
+        System.out.println(Link.empty());
+        System.out.println(Link.empty());
+
+        Integer obj = 5;
+        printInt(obj);
+        printInt(4);
 
 
+    }
 
+    static void printInt(Integer i) {
+        System.out.println("Object: " + i);
 
+    }
 
+    static void printInt(int i) {
+        System.out.println("Primitive: " + i);
 
     }
 
