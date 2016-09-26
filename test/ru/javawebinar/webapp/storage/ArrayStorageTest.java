@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
  * user
  * 16.09.2016
  */
-public class ArrayStorageTest {
+public class ArrayStorageTest extends AbstractStorageTest{
 
     private Resume R1, R2, R3;
     private ArrayStorage storage = new ArrayStorage();
@@ -101,7 +101,6 @@ public class ArrayStorageTest {
         Assert.assertEquals(2, storage.size());
         //Assert.assertEquals(null,storage.load(R1.getUuid()));
         //storage.load(R1.getUuid());
-
     }
 
     @org.junit.Test
@@ -109,8 +108,6 @@ public class ArrayStorageTest {
         Resume[] src = new Resume[]{R1,R2,R3};
         Arrays.sort(src);
         assertArrayEquals(src,storage.getAllStored().toArray());
-
-
     }
 
 
@@ -118,5 +115,11 @@ public class ArrayStorageTest {
     public void size() throws Exception {
         Assert.assertEquals(3, storage.size());
     }
+
+    @org.junit.Test
+    public void CompareAllFields() throws Exception {
+
+    }
+
 
 }

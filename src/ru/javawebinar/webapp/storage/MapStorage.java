@@ -8,15 +8,16 @@ import java.util.Collection;
  * user
  * 20.09.2016
  */
-public class CollectionStorage extends AbstractStorage {
+public class MapStorage {// extends AbstractStorage {
 
-    @Override
+   /* @Override
     protected void doSave(Resume r) {
 
     }
 
     @Override
     public void clear() {
+
 
     }
 
@@ -43,5 +44,5 @@ public class CollectionStorage extends AbstractStorage {
     @Override
     public int size() {
         return 0;
-    }
+    }*/
 }
