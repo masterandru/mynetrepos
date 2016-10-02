@@ -5,12 +5,13 @@ import ru.javawebinar.webapp.model.Resume;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * user
  * 15.09.2016
  */
-public class ArrayStorage extends AbstractStorage{ //implements IStorage {
+public class ArrayStorage extends AbstractStorage { //implements IStorage {
 
     private static final int LIMIT = 100;
     //protected Logger logger = Logger.getLogger(getClass().getName())
@@ -19,11 +20,17 @@ public class ArrayStorage extends AbstractStorage{ //implements IStorage {
     private Resume[] array = new Resume[LIMIT];
     private int size = 0;
 
-    @Override
-    public void clear() {
-        logger.info("Delete all resumes");
-        Arrays.fill(array, null);
 
+    @Override
+    protected void doClear() {
+        Arrays.fill(array, null);
+        size = 0;
+
+    }
+
+    @Override
+    protected boolean exist(String uuid) {
+        return getIdex(uuid) != -1;
     }
 
  /*   @Override
@@ -45,8 +52,8 @@ public class ArrayStorage extends AbstractStorage{ //implements IStorage {
 
     @Override
     protected void doSave(Resume r) {
-        int idx = getIdex(r.getUuid());
-        if (idx != -1) throw new WebAppException("Resume " + r.getUuid() + "already exist", r);
+        //int idx = getIdex(r.getUuid());
+        //if (idx != -1) throw new WebAppException("Resume " + r.getUuid() + "already exist", r);
         array[size++] = r;
     }
 
@@ -59,8 +66,15 @@ public class ArrayStorage extends AbstractStorage{ //implements IStorage {
         array[idx] = r;
     }
 
-
     @Override
+    protected void doUpdate(Resume r) {
+        int idx = getIdex(r.getUuid());
+        if (idx != -1) throw new WebAppException("Resume " + r.getUuid() + "not exist", r);
+        array[idx] = r;
+    }
+
+
+ /*   @Override
     public void delete(String uuid) {
         logger.info("Delete resume with uuid=" + uuid);
         int idx = getIdex(uuid);
@@ -71,30 +85,45 @@ public class ArrayStorage extends AbstractStorage{ //implements IStorage {
         if (numMoved > 0)
             System.arraycopy(array, idx + 1, array, idx, numMoved);
         array[--size] = null; // clear to let GC do its work
-
-    }
+    }*/
 
     @Override
+    protected void doDelete(String uuid) {
+        int idx = getIdex(uuid);
+        int numMoved = size - idx - 1;
+        if (numMoved > 0) System.arraycopy(array, idx + 1, array, idx, numMoved);
+        array[--size] = null; // clear to let GC do its work
+    }
+
+   /* @Override
     public Resume load(String uuid) {
         logger.info("Load resume with uuid=" + uuid);
         int idx = getIdex(uuid);
         if (idx != -1) throw new WebAppException("Resume " + uuid + "not exist");
         return array[idx];
 
-    }
-
+    }*/
 
     @Override
-    public Collection<Resume> getAllStored() {
-        Arrays.sort(array,0,size);
-        return Arrays.asList(Arrays.copyOf(array,size));
+    protected Resume doLoad(String uuid) {
+        int idx = getIdex(uuid);
+        return array[idx];
     }
+
+
+/*
+    @Override
+    public Collection<Resume> getAllStored() {
+        logger.info("getAllStored");
+        Arrays.sort(array, 0, size);
+        return Arrays.asList(Arrays.copyOf(array, size));
+    }
+*/
 
     @Override
     public int size() {
         return size;
     }
-
 
     private int getIdex(String uuid) {
         for (int i = 0; i < LIMIT; i++) {
@@ -105,6 +134,12 @@ public class ArrayStorage extends AbstractStorage{ //implements IStorage {
             }
         }
         return -1;
+    }
+
+
+    @Override
+    protected List<Resume> doGetAll() {
+        return Arrays.asList(Arrays.copyOf(array, size));
     }
 
 }

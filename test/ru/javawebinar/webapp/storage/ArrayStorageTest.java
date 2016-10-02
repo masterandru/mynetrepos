@@ -19,10 +19,12 @@ import static org.junit.Assert.*;
  */
 public class ArrayStorageTest extends AbstractStorageTest{
 
-    private Resume R1, R2, R3;
-    private ArrayStorage storage = new ArrayStorage();
-    // Блок инициализации (работает один раз )
- //   static {
+    {
+       storage = new ArrayStorage();
+    }
+
+//    // Блок инициализации (работает один раз )
+//    static {
 //        R1 = new Resume("Полное имя1","loacation");
 //        R1.addContact(new Contact(ContactType.MAIL,"mail1@ya.ru"));
 //        R1.addContact(new Contact(ContactType.PHONE,"111111"));
@@ -36,6 +38,8 @@ public class ArrayStorageTest extends AbstractStorageTest{
 //        R2.addContact(new Contact(ContactType.PHONE,"33333"));
 //    }
 
+/*
+
     @BeforeClass
     public static void beforeClass(){
         // Тоже что и "static {}" выше
@@ -43,7 +47,7 @@ public class ArrayStorageTest extends AbstractStorageTest{
     }
 
     @Before
-    public void before() {
+    public void before() { // Выполняется до запуска каждого тест-метода
         R1 = new Resume("Полное имя1","loacation");
         R1.addContact(new Contact(ContactType.MAIL,"mail1@ya.ru"));
         R1.addContact(new Contact(ContactType.PHONE,"111111"));
@@ -63,6 +67,7 @@ public class ArrayStorageTest extends AbstractStorageTest{
 
 
     }
+
 
 
     @org.junit.Test
@@ -121,5 +126,6 @@ public class ArrayStorageTest extends AbstractStorageTest{
 
     }
 
+*/
 
 }
